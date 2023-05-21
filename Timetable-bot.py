@@ -16,6 +16,10 @@ def get_schedule(update, context):
 
     # Extract the necessary information from the HTML page using BeautifulSoup
     subjects = soup.find_all("div", class_="subject-name")
+    if not subjects:
+        context.bot.send_message(chat_id=chat_id, text="Расписание не найдено.")
+        return
+
     schedule = ""
     for subject in subjects:
         schedule += subject.text + "\n"
@@ -31,6 +35,10 @@ def get_teacher_schedule(update, context):
 
     # Extract the necessary information from the HTML page using BeautifulSoup
     subjects = soup.find_all("div", class_="subject-name")
+    if not subjects:
+        context.bot.send_message(chat_id=chat_id, text="Расписание не найдено.")
+        return
+
     schedule = ""
     for subject in subjects:
         schedule += subject.text + "\n"
